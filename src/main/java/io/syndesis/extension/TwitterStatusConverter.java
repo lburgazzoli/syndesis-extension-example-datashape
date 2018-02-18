@@ -1,19 +1,26 @@
 package io.syndesis.extension;
 
-import io.syndesis.integration.runtime.api.SyndesisExtensionAction;
+import io.syndesis.extension.api.annotations.Action;
+import io.syndesis.extension.api.annotations.DataShape;
+
 import org.apache.camel.Body;
 import org.apache.camel.Handler;
 
-@SyndesisExtensionAction(
+@Action(
     id = "status-converter",
     name = "status-converter",
     description = "status-converter",
-    inputDataShape = "java:twitter4j.Status",
-    outputDataShape = "java:io.syndesis.extension.TwitterUser"
+    inputDataShape = @DataShape(
+        type = "java:twitter4j.Status"
+    ),
+    outputDataShape = @DataShape(
+        kind = "java", 
+        type = "io.syndesis.extension.TwitterUser"
+    )
 )
 public class TwitterStatusConverter {
     @Handler
-    public io.syndesis.extension.TwitterUser convert(@Body twitter4j.Status status) {
+    public TwitterUser convert(@Body twitter4j.Status status) {
         TwitterUser user = new TwitterUser();
         user.setName(status.getUser().getName());
 
