@@ -1,4 +1,4 @@
-package io.syndesis.extension;
+package io.syndesis.extension.twitter.ds;
 
 import io.syndesis.extension.api.annotations.Action;
 import io.syndesis.extension.api.annotations.DataShape;
@@ -14,11 +14,11 @@ import org.apache.camel.Handler;
         type = "java:twitter4j.Status"
     ),
     outputDataShape = @DataShape(
-        kind = "java", 
-        type = "io.syndesis.extension.TwitterUser"
+        kind = "java",
+        type = "io.syndesis.extension.twitter.ds.TwitterUser"
     )
 )
-public class TwitterStatusConverter {
+public class TwitterStatusConverterBean {
     @Handler
     public TwitterUser convert(@Body twitter4j.Status status) {
         TwitterUser user = new TwitterUser();

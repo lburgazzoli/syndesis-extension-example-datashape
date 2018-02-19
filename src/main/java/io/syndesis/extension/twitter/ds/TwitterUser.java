@@ -1,4 +1,4 @@
-package io.syndesis.extension;
+package io.syndesis.extension.twitter.ds;
 
 public class TwitterUser {
     private String name;
